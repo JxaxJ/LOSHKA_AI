@@ -1,9 +1,9 @@
 import tkinter
 from tkinter import *
 from tkinter import ttk
-import generate
+from MODULE import generate
 from idlelib.tooltip import Hovertip
-import re
+
 
 def insert_generate():
     generate_text.insert(0.0, generate.generate_poems())
@@ -34,7 +34,7 @@ tab2 = ttk.Frame(tab_control)
 tab3 = ttk.Frame(tab_control)
 
 tab_control.add(tab1, text='poems')
-tab_control.add(tab2, text='train_model')
+# tab_control.add(tab2, text='train_model')
 tab_control.add(tab3, text='settings')
 
 lb1 = Label(tab1)
