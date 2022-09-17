@@ -1,5 +1,6 @@
 import os
 
+
 def install_module():
     libs = {"numpy", "tensorflow-gpu", "tensorflow", 'keras', 'pandas'}
 
@@ -9,5 +10,6 @@ def install_module():
             os.system("pip install " + lib)
             print("{} install successful".format(lib))
         print("All Successful")
+
     except:
         print("Failed SomeHow")
