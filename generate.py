@@ -19,7 +19,6 @@ data = open("DATA/data_on_text_generate.mgt", encoding='utf-8').read()
 file = data.lower()
 
 
-
 def train(epoch, batch_size=0):
     model.fit(X, y, epochs=epoch, batch_size=batch_size, callbacks=desired_callbacks)
 
