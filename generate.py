@@ -11,11 +11,11 @@ try:
     from keras.callbacks import ModelCheckpoint
     import pandas as pd
 except ModuleNotFoundError:
-    import install_module
+    from MODULE import install_module
     install_module.install_module()
 
 
-data = open("../DATA/data_on_text_generate.mgt", encoding='utf-8').read()
+data = open("DATA/data_on_text_generate.mgt", encoding='utf-8').read()
 file = data.lower()
 
 
@@ -50,7 +50,7 @@ def save_lengths(length):
 
 def set_lengths():
     try:
-        lenght = pd.read_csv('../DATA/data.csv')
+        lenght = pd.read_csv('DATA/data.csv')
         return lenght['lenght'][0]
 
     except FileNotFoundError:
@@ -100,11 +100,11 @@ def generate_poems():
 
     model.compile(loss='categorical_crossentropy', optimizer='adam')
 
-    filepath = "../DATA/model_weights_saved_more_dense.hdf5"
+    filepath = "DATA/model_weights_saved_more_dense.hdf5"
     checkpoint = ModelCheckpoint(filepath, monitor='loss', verbose=1, save_best_only=True, mode='min')
     desired_callbacks = [checkpoint]
 
-    filename = "../DATA/model_weights_saved_more_dense.hdf5"
+    filename = "DATA/model_weights_saved_more_dense.hdf5"
     model.load_weights(filename)
     model.compile(loss='categorical_crossentropy', optimizer='adam')
 

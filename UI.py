@@ -1,7 +1,7 @@
 import tkinter
 from tkinter import *
 from tkinter import ttk
-from MODULE import generate
+from Neuro_beta import generate
 from idlelib.tooltip import Hovertip
 
 
