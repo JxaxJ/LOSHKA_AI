@@ -15,7 +15,7 @@ except ModuleNotFoundError:
     install_module.install_module()
 
 
-data = open("./DATA/data_on_text_generate.mgt", encoding='utf-8').read()
+data = open("../DATA/data_on_text_generate.mgt", encoding='utf-8').read()
 file = data.lower()
 
 
