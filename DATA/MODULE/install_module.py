@@ -2,7 +2,7 @@ import os
 
 
 def install_module():
-    libs = {'--upgrade pip', "numpy", "tensorflow-gpu", "tensorflow", 'keras', 'pandas'}
+    libs = {'--upgrade pip', "numpy", "tensorflow-gpu", "tensorflow", 'keras'}
 
     try:
         for lib in libs:

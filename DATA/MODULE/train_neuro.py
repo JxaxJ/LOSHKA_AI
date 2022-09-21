@@ -10,7 +10,7 @@ from keras.utils import np_utils
 from keras.callbacks import ModelCheckpoint
 import os
 
-data = open("../DATA/data_on_text_generate.mgt", encoding='utf-8').read()
+data = open("../Neuro_beta/DATA/data_on_text_generate.mgt", encoding='utf-8').read()
 file = data.lower()
 
 
@@ -67,11 +67,11 @@ model.add(Dense(y.shape[1], activation='softmax'))
 
 model.compile(loss='categorical_crossentropy', optimizer='adam')
 
-filepath = "../DATA/model_weights_saved_more_dense.hdf5"
+filepath = "../model_weights_saved_more_dense.hdf5"
 checkpoint = ModelCheckpoint(filepath, monitor='loss', verbose=1, save_best_only=True, mode='min')
 desired_callbacks = [checkpoint]
 
-filename = "../DATA/model_weights_saved_more_dense.hdf5"
+filename = "../model_weights_saved_more_dense.hdf5"
 model.load_weights(filename)
 model.compile(loss='categorical_crossentropy', optimizer='adam')
 

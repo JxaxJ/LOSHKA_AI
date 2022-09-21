@@ -1,3 +1,5 @@
+from DATA.MODULE import data_sr
+
 try:
     import nltk
     import numpy
@@ -9,13 +11,12 @@ try:
     from keras.layers import Dense, Dropout, LSTM
     from keras.utils import np_utils
     from keras.callbacks import ModelCheckpoint
-    import pandas as pd
 except ModuleNotFoundError:
-    from MODULE import install_module
+    import install_module
     install_module.install_module()
 
 
-data = open("DATA/data_on_text_generate.mgt", encoding='utf-8').read()
+data = open("../Neuro_beta/DATA/data_on_text_generate.mgt", encoding='utf-8').read()
 file = data.lower()
 
 
@@ -43,21 +44,6 @@ def tokenize_words(input):
         return " ".join(filtered)
 
 
-def save_lengths(length):
-    dataframe = pd.DataFrame([length], columns=['lenght'])
-    dataframe.to_csv('../DATA/data.csv', index=False)
-
-
-def set_lengths():
-    try:
-        lenght = pd.read_csv('DATA/data.csv')
-        return lenght['lenght'][0]
-
-    except FileNotFoundError:
-        save_lengths(100)
-        return 100
-
-
 processed_inputs = tokenize_words(file)
 chars = sorted(list(set(processed_inputs)))
 char_to_num = dict((c, i) for i, c in enumerate(chars))
@@ -66,7 +52,7 @@ vocab_len = len(chars)
 # print ("Total number of characters:", input_len)
 # print ("Total vocab:", vocab_len)
 
-seq_length = int(set_lengths())
+seq_length = int(data_sr.get_lenght())
 
 
 def generate_poems():
@@ -100,11 +86,11 @@ def generate_poems():
 
     model.compile(loss='categorical_crossentropy', optimizer='adam')
 
-    filepath = "DATA/model_weights_saved_more_dense.hdf5"
+    filepath = "../Neuro_beta/DATA/model_weights_saved_more_dense.hdf5"
     checkpoint = ModelCheckpoint(filepath, monitor='loss', verbose=1, save_best_only=True, mode='min')
     desired_callbacks = [checkpoint]
 
-    filename = "DATA/model_weights_saved_more_dense.hdf5"
+    filename = "../Neuro_beta/DATA/model_weights_saved_more_dense.hdf5"
     model.load_weights(filename)
     model.compile(loss='categorical_crossentropy', optimizer='adam')
 
