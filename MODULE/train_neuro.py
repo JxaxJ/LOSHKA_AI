@@ -10,7 +10,7 @@ from keras.utils import np_utils
 from keras.callbacks import ModelCheckpoint
 import os
 
-print(os.listdir())
+
 data = open('DATA/data_on_text_generate.mgt', encoding='utf-8').read()
 file = data.lower()
 
