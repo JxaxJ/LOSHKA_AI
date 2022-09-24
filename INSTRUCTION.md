@@ -36,6 +36,9 @@
 
 **Проверьте верность указания пути в корневую папку, путь должен вести к папке в которой находится файл UI.py**
 
+**Если вы получаете ошибку: `TypeError: int() argument must be a string, a bytes-like object or a number, not 'NoneType`,
+просто снова пропишите 'python UI.py'**
+
 ***
 
 # <center>`Не помогло?`</center>
