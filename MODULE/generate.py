@@ -31,7 +31,6 @@ seq_length = int(data_sr.get_lenght())
 
 
 def generate_poems():
-
     x_data = []
     y_data = []
 

@@ -18,7 +18,7 @@
 2. **Прописываем путь в корневую папку(папку в которой у вас находится UI.py) с помощью cd <small>(см. пример ниже)</small>**
 3. **Пишем 'python UI.py' и ждём запуска**
 
-![image](DATA/icon/instruction_picture/example_0.png)
+![image](DATA/icon/instruction_picture/example.png)
 
 
 ***
