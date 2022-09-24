@@ -12,7 +12,7 @@ try:
     from keras.utils import np_utils
     from keras.callbacks import ModelCheckpoint
 except ModuleNotFoundError:
-    import install_module
+    from MODULE import install_module
     install_module.install_module()
 
 
