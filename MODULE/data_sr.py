@@ -1,5 +1,4 @@
 import sqlite3
-import os
 
 
 db = sqlite3.connect('DATA/data.db')
@@ -37,14 +36,14 @@ def get_lenght():
         return data
 
     except IndexError:
-        creating_colums(200, 3)
+        creating_colums(100, 3)
+
 
 def get_train_epoch():
     try:
         sql.execute("SELECT train_epoch FROM generate_data")
         data = sql.fetchall()[0][0]
-        print(data)
         return data
 
     except IndexError:
-        creating_colums(200, 3)
+        creating_colums(100, 3)

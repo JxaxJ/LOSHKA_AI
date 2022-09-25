@@ -1,12 +1,9 @@
 from MODULE import data_sr
 
 try:
-    import nltk
     import numpy
     import sys
-    from nltk.tokenize import RegexpTokenizer
     import tensorflow
-    from nltk.corpus import stopwords
     from keras.models import Sequential
     from keras.layers import Dense, Dropout, LSTM
     from keras.utils import np_utils
@@ -27,7 +24,12 @@ vocab_len = len(chars)
 # print ("Total number of characters:", input_len)
 # print ("Total vocab:", vocab_len)
 
-seq_length = int(data_sr.get_lenght())
+try:
+    seq_length = int(data_sr.get_lenght())
+
+except TypeError:
+    data_sr.creating_colums(100, 3)
+    seq_length = 100
 
 
 def generate_poems():

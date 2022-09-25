@@ -1,8 +1,25 @@
 import os
+import tensorflow as tf
 
 
 def install_module():
-    libs = {'--upgrade pip', "numpy==1.23.3", "tensorflow-gpu==2.9.1", "tensorflow==2.9.1", 'keras==2.9.0'}
+    libs = {"numpy==1.23.3", "tensorflow==2.10.0", 'keras==2.10.0'}
+    os.system('pip install --upgrade pip')
+
+    if not tf.config.list_physical_devices('GPU'):
+        print('You don`t installed CUDA or CUDNN, installing tensorflow-gpu skipped')
+
+    else:
+        try:
+            for lib in libs:
+                print("start install {0}".format(lib))
+                os.system(f"pip install {lib}")
+                print("{} install successful".format(lib))
+            os.system('pip install tensorflow-gpu==2.10.0')
+            print("All Successful")
+
+        except:
+            print("Failed SomeHow")
 
     try:
         for lib in libs:
@@ -13,3 +30,6 @@ def install_module():
 
     except:
         print("Failed SomeHow")
+
+
+install_module()

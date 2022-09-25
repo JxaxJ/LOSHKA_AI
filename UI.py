@@ -1,7 +1,12 @@
-from PyQt5 import QtCore, QtGui, QtWidgets
-from MODULE import generate, data_sr
-from PyQt5.QtWidgets import *
-from PyQt5.QtCore import *
+from MODULE import data_sr, generate
+import os
+try:
+    from PyQt5 import QtCore, QtGui, QtWidgets
+    from PyQt5.QtWidgets import *
+    from PyQt5.QtCore import *
+
+except ModuleNotFoundError:
+    os.system('pip install pyqt5==5.15.4')
 
 
 class Ui_MainWindow(object):
@@ -97,10 +102,6 @@ class Ui_MainWindow(object):
         self.label.setText("")
         self.label.setPixmap(QtGui.QPixmap("DATA/icon/github_40_40.png"))
         self.label.setObjectName("label")
-        self.text_neuro_scrollbar = QtWidgets.QScrollBar(self.generate)
-        self.text_neuro_scrollbar.setGeometry(QtCore.QRect(692, 40, 16, 401))
-        self.text_neuro_scrollbar.setOrientation(QtCore.Qt.Vertical)
-        self.text_neuro_scrollbar.setObjectName("text_neuro_scrollbar")
         self.train_neuro_page.addTab(self.generate, "")
         self.tab = QtWidgets.QWidget()
         self.tab.setObjectName("tab")
@@ -138,7 +139,7 @@ class Ui_MainWindow(object):
         font.setWeight(50)
         self.console_lable.setFont(font)
         self.console_lable.setStyleSheet("background-color: rgb(211, 211, 211);")
-        self.console_lable.setText("")
+        self.console_lable.setText("Если программа зависла - это нормально, после окончания обучения она восстановится")
         self.console_lable.setObjectName("console_lable")
         self.train_neuro_page.addTab(self.tab, "")
         self.settings = QtWidgets.QWidget()
@@ -208,21 +209,17 @@ class Ui_MainWindow(object):
         MainWindow.setStatusBar(self.statusbar)
 
         self.retranslateUi(MainWindow)
-        self.train_neuro_page.setCurrentIndex(1)
+        self.train_neuro_page.setCurrentIndex(0)
         QtCore.QMetaObject.connectSlotsByName(MainWindow)
 
-        self.console_lable.setText('Если программа зависла - это нормально, после окончания обучения она восстановится')
-
-        self.lenght.setValue(self.get_leght())
-        self.epochBox.setValue(self.get_epoch())
+        self.lenght.setValue(data_sr.get_lenght()), self.epochBox.setValue(data_sr.get_train_epoch())
 
         self.add_function()
-
 
     def add_function(self):
         self.generate_btn.clicked.connect(lambda: self.genetete_text())
         self.delete_btn.clicked.connect(lambda: self.delete_text())
-        self.apply_btn.clicked.connect(lambda: self.save_lenghts(self.lenght.value(), self.epochBox.value()))
+        self.apply_btn.clicked.connect(lambda: self.save_data(self.lenght.value(), self.epochBox.value()))
         self.start_train_btn.clicked.connect(lambda: self.train())
 
     def genetete_text(self):
@@ -231,13 +228,7 @@ class Ui_MainWindow(object):
     def delete_text(self):
         self.text_neuro.setPlainText('')
 
-    def get_leght(self):
-        return data_sr.get_lenght()
-
-    def get_epoch(self):
-        return data_sr.get_train_epoch()
-
-    def save_lenghts(self, lenght, train_epoch):
+    def save_data(self, lenght, train_epoch):
         self.reload_lable.setText('Что бы применить настройки - перезапустите приложение*')
         data_sr.save_data(lenght, train_epoch)
 

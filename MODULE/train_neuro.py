@@ -1,19 +1,13 @@
-import nltk
 import numpy
-import sys
-from nltk.tokenize import RegexpTokenizer
 import tensorflow
-from nltk.corpus import stopwords
 from keras.models import Sequential
 from keras.layers import Dense, Dropout, LSTM
 from keras.utils import np_utils
 from keras.callbacks import ModelCheckpoint
-import os
 
 
 data = open('DATA/data_on_text_generate.mgt', encoding='utf-8').read()
 file = data.lower()
-
 
 processed_inputs = file
 chars = sorted(list(set(processed_inputs)))
@@ -23,7 +17,7 @@ vocab_len = len(chars)
 # print ("Total number of characters:", input_len)
 # print ("Total vocab:", vocab_len)
 
-seq_length = 200
+seq_length = 100
 
 
 def train(epoch, batch_size=0):
