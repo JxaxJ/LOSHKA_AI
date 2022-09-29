@@ -8,6 +8,15 @@ def install_module():
 
     if not tf.config.list_physical_devices('GPU'):
         print('You don`t installed CUDA or CUDNN, installing tensorflow-gpu skipped')
+        try:
+            for lib in libs:
+                print("start install {0}".format(lib))
+                os.system(f"pip install {lib}")
+                print("{} install successful".format(lib))
+            print("All Successful")
+
+        except:
+            print("Failed SomeHow")
 
     else:
         try:
@@ -20,16 +29,3 @@ def install_module():
 
         except:
             print("Failed SomeHow")
-
-    try:
-        for lib in libs:
-            print("start install {0}".format(lib))
-            os.system(f"pip install {lib}")
-            print("{} install successful".format(lib))
-        print("All Successful")
-
-    except:
-        print("Failed SomeHow")
-
-
-install_module()

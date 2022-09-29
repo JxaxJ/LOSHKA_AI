@@ -28,11 +28,10 @@ try:
     seq_length = int(data_sr.get_lenght())
 
 except TypeError:
-    data_sr.creating_colums(100, 3)
     seq_length = 100
 
 
-def generate_poems():
+def generate_verses():
     x_data = []
     y_data = []
 
