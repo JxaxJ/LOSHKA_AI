@@ -1,9 +1,13 @@
 import os
-import tensorflow as tf
+
+try:
+    import tensorflow as tf
+except:
+    os.system('tensorflow==2.10.0')
 
 
 def install_module():
-    libs = {"numpy==1.23.3", "tensorflow==2.10.0", 'keras==2.10.0'}
+    libs = {"numpy==1.23.3", 'keras==2.10.0'}
     os.system('pip install --upgrade pip')
 
     if not tf.config.list_physical_devices('GPU'):

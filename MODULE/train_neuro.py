@@ -45,7 +45,6 @@ y = np_utils.to_categorical(y_data)
 
 model = Sequential()
 model.add(LSTM(512, input_shape=(X.shape[1], X.shape[2]), return_sequences=True))
-model.add(Dropout(0.2))
 model.add(LSTM(256, return_sequences=True))
 model.add(LSTM(256))
 model.add(Dense(y.shape[1], activation='softmax'))
