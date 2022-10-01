@@ -2,7 +2,8 @@ import os
 
 try:
     import tensorflow as tf
-except:
+
+except ModuleNotFoundError:
     os.system('tensorflow==2.10.0')
 
 
@@ -33,3 +34,6 @@ def install_module():
 
         except:
             print("Failed SomeHow")
+
+
+install_module()

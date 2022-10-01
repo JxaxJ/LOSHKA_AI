@@ -332,4 +332,3 @@ def start():
         ui.setupUi(MainWindow)
         MainWindow.show()
         sys.exit(app.exec_())
-
