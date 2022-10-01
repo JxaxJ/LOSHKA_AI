@@ -3,7 +3,7 @@ import os
 try:
     import tensorflow as tf
 
-except ModuleNotFoundError:
+except:
     os.system('tensorflow==2.10.0')
 
 
