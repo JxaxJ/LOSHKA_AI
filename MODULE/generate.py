@@ -1,16 +1,12 @@
 from MODULE import data_sr
+import numpy
+import sys
+import tensorflow
+from keras.models import Sequential
+from keras.layers import Dense, Dropout, LSTM
+from keras.utils import np_utils
+from keras.callbacks import ModelCheckpoint
 
-try:
-    import numpy
-    import sys
-    import tensorflow
-    from keras.models import Sequential
-    from keras.layers import Dense, Dropout, LSTM
-    from keras.utils import np_utils
-    from keras.callbacks import ModelCheckpoint
-except ModuleNotFoundError:
-    from MODULE import install_module
-    install_module.install_module()
 
 
 data = open("DATA/data_on_text_generate.mgt", encoding='utf-8').read()
@@ -53,9 +49,9 @@ def generate_verses():
 
     #Создние нейронной сети и добавление нейронов
     model = Sequential()
-    model.add(LSTM(512, input_shape=(X.shape[1], X.shape[2]), return_sequences=True)) #Значение 512 можно уменьшить для сокращения использования видеопамяти
-    model.add(LSTM(256, return_sequences=True)) #Значение 256 можно уменьшить для сокращения использования видеопамяти
-    model.add(LSTM(256)) #Значение 256 можно уменьшить для сокращения использования видеопамяти
+    model.add(LSTM(512, input_shape=(X.shape[1], X.shape[2]), return_sequences=True))
+    model.add(LSTM(256, return_sequences=True))
+    model.add(LSTM(256))
     model.add(Dense(y.shape[1], activation='softmax'))
 
     model.compile(loss='categorical_crossentropy', optimizer='adam')
@@ -73,3 +69,5 @@ def generate_verses():
     pattern = x_data[start]
 
     return ''.join([num_to_char[value] for value in pattern])
+
+
